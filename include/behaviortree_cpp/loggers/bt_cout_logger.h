@@ -1,8 +1,9 @@
 #ifndef BT_COUT_LOGGER_H
 #define BT_COUT_LOGGER_H
 
-#include <cstring>
 #include "behaviortree_cpp/loggers/abstract_logger.h"
+
+#include <cstring>
 
 namespace BT
 {
@@ -13,11 +14,14 @@ namespace BT
 
 class StdCoutLogger : public StatusChangeLogger
 {
-  static std::atomic<bool> ref_count;
-
 public:
   StdCoutLogger(const BT::Tree& tree);
   ~StdCoutLogger() override;
+
+  StdCoutLogger(const StdCoutLogger&) = delete;
+  StdCoutLogger& operator=(const StdCoutLogger&) = delete;
+  StdCoutLogger(StdCoutLogger&&) = delete;
+  StdCoutLogger& operator=(StdCoutLogger&&) = delete;
 
   virtual void flush() override;
 
